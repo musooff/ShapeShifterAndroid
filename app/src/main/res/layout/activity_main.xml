@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ballboycorp.android.shapeshifter.MainActivityViewModel" />
+        <variable
+            name="clickHandler"
+            type="com.ballboycorp.android.shapeshifter.MainActivity.ClickHandler" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/containerCanvas"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ivCanvas"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            app:layout_constraintTop_toBottomOf="@id/containerCanvas" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/containerControls"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toBottomOf="@id/seekBar">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/slowMotionBtn"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{() -> clickHandler.onClickSlowMotion()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/toStartBtn"
+                android:src="@drawable/ic_slow_motion"/>
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/toStartBtn"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{() -> clickHandler.onClickToStart()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/slowMotionBtn"
+                app:layout_constraintRight_toLeftOf="@id/playBtn"
+                android:src="@drawable/ic_prev"/>
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/playBtn"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{() -> clickHandler.onClickPlay()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/toStartBtn"
+                app:layout_constraintRight_toLeftOf="@id/toEndBtn"
+                android:src="@drawable/ic_play"/>
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/toEndBtn"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{() -> clickHandler.onClickToEnd()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/playBtn"
+                app:layout_constraintRight_toLeftOf="@id/loopBtn"
+                android:src="@drawable/ic_next"/>
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/loopBtn"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{() -> clickHandler.onClickRepeat()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/toEndBtn"
+                app:layout_constraintRight_toRightOf="parent"
+                android:tint="@{viewModel.repeat ? @color/colorEnabled : @color/colorBlack }"
+                android:src="@drawable/ic_repeat"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
