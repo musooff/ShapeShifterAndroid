@@ -1,5 +1,6 @@
 package com.ballboycorp.android.shapeshifter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -7,6 +8,7 @@ import android.view.MenuItem
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.ballboycorp.android.shapeshifter.create.CreateDrawableActivity
 import com.ballboycorp.android.shapeshifter.databinding.ActivityMainBinding
 import com.ballboycorp.android.shapeshifter.utils.extentions.getViewModel
 import com.ballboycorp.android.shapeshifter.utils.extentions.playAnimation
@@ -46,6 +48,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     viewModel.isPlaying = false
+                    animatedIcon.currentPlayTime = 0
+                    seekBar.progress = 0
                     playBtn.playAnimation(R.drawable.ic_pause_to_play_anim)
                 }
             }
@@ -91,7 +95,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.exportDoc -> toast("Export")
-            R.id.importDoc -> toast("Import")
+            R.id.importDoc -> {
+                val intent = Intent(this, CreateDrawableActivity::class.java)
+                startActivity(intent)
+            }
             R.id.file -> toast("File")
         }
         return super.onOptionsItemSelected(item)

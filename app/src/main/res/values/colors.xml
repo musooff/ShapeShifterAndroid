@@ -10,4 +10,7 @@
     <color name="hippo">#78909c</color>
     <color name="elephant">#bdbdbd</color>
     <color name="buffalo">#795548</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGrey55">#555555</color>
+    <color name="colorGreyE2">#e2e2e2</color>
 </resources>
