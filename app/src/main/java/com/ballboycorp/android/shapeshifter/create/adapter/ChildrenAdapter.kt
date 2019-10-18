@@ -12,7 +12,10 @@ import com.ballboycorp.android.shapeshifter.databinding.ItemChildClipPathBinding
 import com.ballboycorp.android.shapeshifter.databinding.ItemChildGroupBinding
 import com.ballboycorp.android.shapeshifter.databinding.ItemChildPathBinding
 
-class ChildrenAdapter: RecyclerView.Adapter<ChildrenAdapter.ChildrenViewHolder>() {
+
+
+
+class ChildrenAdapter: RecyclerView.Adapter<ChildrenAdapter.ChildrenViewHolder>(), DragHelper.ActionCompletionContract {
 
     private var mItems = mutableListOf<Child>()
 
@@ -55,4 +58,41 @@ class ChildrenAdapter: RecyclerView.Adapter<ChildrenAdapter.ChildrenViewHolder>(
     }
 
     inner class ChildrenViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onViewMoved(oldPosition: Int, newPosition: Int) {
+
+        val targetItem = mItems[oldPosition]
+
+        if (targetItem is Animation) return
+
+        val item: Child
+        when(targetItem) {
+            is Path -> {
+                item = Path().apply {
+                    name = targetItem.name
+                }
+            }
+            is Group -> {
+                item = Group().apply {
+                    name = targetItem.name
+                }
+            }
+
+            else -> {
+                item = ClipPath().apply {
+                    name = (targetItem as ClipPath).name
+                }
+            }
+        }
+        mItems.removeAt(oldPosition)
+        mItems.add(newPosition, item)
+        notifyItemMoved(oldPosition, newPosition)
+    }
+
+    override fun onViewSwiped(position: Int) {
+        mItems.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+
 }

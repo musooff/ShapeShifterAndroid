@@ -3,15 +3,18 @@ package com.ballboycorp.android.shapeshifter.create
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.ballboycorp.android.shapeshifter.R
 import com.ballboycorp.android.shapeshifter.create.adapter.ChildrenAdapter
+import com.ballboycorp.android.shapeshifter.create.adapter.DragHelper
 import com.ballboycorp.android.shapeshifter.create.model.Animation
 import com.ballboycorp.android.shapeshifter.create.model.ClipPath
 import com.ballboycorp.android.shapeshifter.create.model.Group
 import com.ballboycorp.android.shapeshifter.create.model.Path
 import com.ballboycorp.android.shapeshifter.databinding.ActivityCreateDrawableBinding
 import kotlinx.android.synthetic.main.activity_create_drawable.*
+
 
 class CreateDrawableActivity: AppCompatActivity() {
 
@@ -57,6 +60,10 @@ class CreateDrawableActivity: AppCompatActivity() {
                 name = "trimPathEnd"
             }
         ))
+
+        val dragHelper = DragHelper(adapter)
+        val touchHelper = ItemTouchHelper(dragHelper)
+        touchHelper.attachToRecyclerView(children)
     }
 
     inner class ClickHandler {
