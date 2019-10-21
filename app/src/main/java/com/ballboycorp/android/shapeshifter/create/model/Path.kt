@@ -1,6 +1,6 @@
 package com.ballboycorp.android.shapeshifter.create.model
 
-class Path: Child() {
+class Path: Layer() {
     var name: String? = null
     var pathData: String? = null
     var fillColor: String? = null

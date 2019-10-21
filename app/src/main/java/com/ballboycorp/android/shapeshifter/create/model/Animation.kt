@@ -1,6 +1,6 @@
 package com.ballboycorp.android.shapeshifter.create.model
 
-class Animation: Child() {
+class Animation: Layer() {
     var name: String? = null
     var startTime: Long = 0
     var endTime: Long = 0

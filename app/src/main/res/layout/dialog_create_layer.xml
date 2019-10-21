@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="com.ballboycorp.android.shapeshifter.create.model.LayerType"/>
+        <variable
+            name="clickHandler"
+            type="com.ballboycorp.android.shapeshifter.create.dialog.CreateLayerDialog.ClickHandler" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Add Layer"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGreyE2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="New Group "
+            android:onClick="@{() -> clickHandler.onClickType(LayerType.GROUP)}"
+            android:background="?selectableItemBackground"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGreyE2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="New Path"
+            android:onClick="@{() -> clickHandler.onClickType(LayerType.PATH)}"
+            android:background="?selectableItemBackground"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGreyE2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="New Clip Path"
+            android:onClick="@{() -> clickHandler.onClickType(LayerType.CLIP_PATH)}"
+            android:background="?selectableItemBackground"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</layout>

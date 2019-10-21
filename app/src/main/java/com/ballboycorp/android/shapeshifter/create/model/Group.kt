@@ -1,6 +1,6 @@
 package com.ballboycorp.android.shapeshifter.create.model
 
-class Group: Child() {
+class Group: Layer() {
     var name: String? = null
     var rotation: Float = 0f
     var scaleX: Float = 0f

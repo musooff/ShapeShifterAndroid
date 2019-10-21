@@ -40,4 +40,6 @@ dependencies {
 
     implementation 'com.github.alexjlockwood:kyrie:0.2.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    implementation 'com.google.android.material:material:1.0.0'
 }
